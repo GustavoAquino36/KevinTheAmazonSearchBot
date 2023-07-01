@@ -15,7 +15,7 @@ def pesquisarItem(item):
     searchbar = driver.find_element(By.XPATH, '//*[@id="twotabsearchtextbox"]')
     searchbar.send_keys(f"{item}")
     searchbar.send_keys(Keys.ENTER)
-    time.sleep(5)
+    time.sleep(3)
     prices = driver.find_elements(By.CLASS_NAME, 'a-price-whole')
     fraction = driver.find_elements(By.CLASS_NAME, 'a-price-fraction')
     pricesList = []
@@ -33,7 +33,7 @@ def pesquisarItem(item):
 def tratarDados(pricesList):
     minValue = min(pricesList)
     indexValue = pricesList.index(minValue)
-    titles = driver.find_elements(By.CSS_SELECTOR, 'h2.s-line-clamp-4')
+    titles = driver.find_elements(By.CSS_SELECTOR, 'h2.s-line-clamp-4 > a')
     titles[indexValue].click()
 
 lista = pesquisarItem(item)
