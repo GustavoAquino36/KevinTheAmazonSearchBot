@@ -15,15 +15,11 @@ def pesquisarItem(item):
     searchbar = driver.find_element(By.XPATH, '//*[@id="twotabsearchtextbox"]')
     searchbar.send_keys(f"{item}")
     searchbar.send_keys(Keys.ENTER)
+    time.sleep(1)
     prices = driver.find_elements(By.CLASS_NAME, 'a-price-whole')
     fraction = driver.find_elements(By.CLASS_NAME, 'a-price-fraction')
     pricesList = []
     for i in range(5):
-        print(prices[3].text)
-        print(fraction[3].text)
-        #fullPrice = f'{prices[i].text},{fraction[i].text}'
-        #pricesList.append(fullPrice) 
+        fullPrice = f'{prices[i].text},{fraction[i].text}'
+        pricesList.append(fullPrice) 
     return pricesList
-preco = pesquisarItem(item)
-print(preco)
-
