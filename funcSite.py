@@ -41,8 +41,4 @@ def coletaItem(driver):
         seller = driver.find_element(By.XPATH, '//*[@id="tabular-buybox"]/div[1]/div[6]/div/span').text
     url = driver.current_url
     shorturl = pyshorteners.Shortener().tinyurl.short(f"{url}")
-    print(f'''--------------- Item com menor preço encontrado -------------------\n
-    URL do Site: {shorturl}
-    Nome do Item encontrado: {title}
-    Preço do item: {fullPrice}
-    Vendido por: {seller}''')
+    return(shorturl, title, fullPrice, seller)
