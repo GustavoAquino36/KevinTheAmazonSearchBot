@@ -7,6 +7,8 @@ config = LerConfig()
 
 def stringfyMessage(item, lista, shorturl, title, fullPrice, seller):
     mediaValores = sum(lista) / len(lista)
+    print(mediaValores)
+    mediaValores = '{:.2f}'.format(mediaValores)
     return (
         f'''
 <div style="
@@ -23,7 +25,7 @@ Média dos preços: R$ {str(mediaValores).replace('.', ',')}
 <ul>
     <li>URL do Site: {shorturl}</li>
     <li>Nome do Item encontrado: {title}</li>
-    <li>Preço do item: R$ {fullPrice.replace('.', ',')}</li>
+    <li>Preço do item: R$ {str(fullPrice).replace('.', ',')}</li>
     <li>Vendido por: {seller}</li>
 </ul>
 </div>

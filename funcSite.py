@@ -29,17 +29,25 @@ def tratarDados(driver, pricesList):
     titles[indexValue].click()
 
 def coletaItem(driver):
-    price = driver.find_elements(By.CLASS_NAME, 'a-price-whole')
-    fraction = driver.find_elements(By.CLASS_NAME, 'a-price-fraction')
-    fullPrice = f'{price[0].text}.{fraction[0].text}'
-    time.sleep(1)
+    try:
+        price = driver.find_elements(By.CLASS_NAME, 'a-price-whole')
+        fraction = driver.find_elements(By.CLASS_NAME, 'a-price-fraction')
+        fullPrice = f'{price[0].text}.{fraction[0].text}'
+    except:
+        fullPrice = driver.find_element(By.CSS_SELECTOR, '.apexPriceToPay:nth-child(1)').text
+        fullPrice = fullPrice.replace('R$', '')
+
     title = driver.find_element(By.XPATH, '//*[@id="productTitle"]').text
     time.sleep(1)
     try:
         seller = driver.find_elements(By.CLASS_NAME, 'tabular-buybox-text-message')
         seller = seller[1].text
     except:
-        seller = driver.find_element(By.ID, 'sellerProfileTriggerId').text
+        try:
+            seller = driver.find_element(By.ID, 'sellerProfileTriggerId').text
+        except:
+            seller = 'Amazon'
+        
     url = driver.current_url
     shorturl = pyshorteners.Shortener().tinyurl.short(f"{url}")
     return(shorturl, title, fullPrice, seller)
