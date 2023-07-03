@@ -1,17 +1,34 @@
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from lerXLSX import LerConfig
 
-def stringfyMessage(lista, shorturl, title, fullPrice, seller):
+config = LerConfig()
+
+def stringfyMessage(item, lista, shorturl, title, fullPrice, seller):
     mediaValores = sum(lista) / len(lista)
     return (
-        f'''Média dos preços: R$ {str(mediaValores).replace('.', ',')}\n
-        Item mais barato:
-        URL do Site: {shorturl}
-        Nome do Item encontrado: {title}
-        Preço do item: R$ {fullPrice.replace('.', ',')}
-        Vendido por: {seller}
-    ''')
+        f'''
+<div style="
+border: 1px solid black; 
+width: fit-content; 
+padding: 15px; 
+border-radius: 5px;
+">
+<header>
+Item pesquisado: {item} <br>
+Média dos preços: R$ {str(mediaValores).replace('.', ',')} 
+</header> <br>
+<b>Item mais barato:</b>
+<ul>
+    <li>URL do Site: {shorturl}</li>
+    <li>Nome do Item encontrado: {title}</li>
+    <li>Preço do item: R$ {fullPrice.replace('.', ',')}</li>
+    <li>Vendido por: {seller}</li>
+</ul>
+</div>
+''')
+
 
 def sendEmail(message, receiver):
     sender = 'amazonresearchbot@gmail.com'
@@ -20,11 +37,11 @@ def sendEmail(message, receiver):
     email['From'] = sender
     email['To'] = receiver
     email['Subject'] = 'Subject test'
-    email.attach(MIMEText(message, 'plain'))
+    email.attach(MIMEText(message, 'html'))
     with smtplib.SMTP('smtp.gmail.com', 587) as server:
         server.ehlo()
         server.starttls()
         server.ehlo()
-        server.login('amazonresearchbot@gmail.com', 'ehnzknbniorxxvpf')
+        server.login(sender, config['senha'])
         server.sendmail(email['From'], email['To'], email.as_string())
         server.quit()

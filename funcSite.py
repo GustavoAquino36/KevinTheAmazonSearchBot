@@ -25,7 +25,7 @@ def pesquisarItem(driver, item):
 def tratarDados(driver, pricesList):
     minValue = min(pricesList)
     indexValue = pricesList.index(minValue)
-    titles = driver.find_elements(By.CSS_SELECTOR, 'h2.s-line-clamp-4 > a')
+    titles = driver.find_elements(By.CSS_SELECTOR, 'h2 > a')
     titles[indexValue].click()
 
 def coletaItem(driver):
@@ -36,9 +36,10 @@ def coletaItem(driver):
     title = driver.find_element(By.XPATH, '//*[@id="productTitle"]').text
     time.sleep(1)
     try:
-        seller = driver.find_element(By.ID, 'sellerProfileTriggerId').text
+        seller = driver.find_elements(By.CLASS_NAME, 'tabular-buybox-text-message')
+        seller = seller[1].text
     except:
-        seller = driver.find_element(By.XPATH, '//*[@id="tabular-buybox"]/div[1]/div[6]/div/span').text
+        seller = driver.find_element(By.ID, 'sellerProfileTriggerId').text
     url = driver.current_url
     shorturl = pyshorteners.Shortener().tinyurl.short(f"{url}")
     return(shorturl, title, fullPrice, seller)
