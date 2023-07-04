@@ -17,7 +17,7 @@ padding: 15px;
 border-radius: 5px;
 ">
 <header>
-Item pesquisado: {item} <br>
+Item pesquisado: {item.capitalize()} <br>
 Média dos preços: R$ {str(mediaValores).replace('.', ',')} 
 </header> <br>
 <b>Item mais barato:</b>

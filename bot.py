@@ -5,9 +5,6 @@ from OpenBrowser import OpenBrowser
 from lerXLSX import LerConfig
 from funcSite import pesquisarItem, tratarDados, coletaItem
 from sendEmail import stringfyMessage, sendEmail
-import time
-import os
-import sys
 
 dictConfig = LerConfig()
 item = input("Qual item deseja pesquisar via Amazon?\n")
@@ -17,4 +14,5 @@ lista = pesquisarItem(driver, item)
 tratarDados(driver, lista)
 shorturl, title, fullPrice, seller = coletaItem(driver)
 message = stringfyMessage(item, lista, shorturl, title, fullPrice, seller)
+driver.quit()
 sendEmail(message, email)
