@@ -32,17 +32,15 @@ Média dos preços: R$ {str(mediaValores).replace('.', ',')}
 
 
 def sendEmail(message, receiver):
-    sender = 'amazonresearchbot@gmail.com'
-
     email = MIMEMultipart()
-    email['From'] = sender
+    email['From'] = config['email']
     email['To'] = receiver
-    email['Subject'] = 'Subject test'
+    email['Subject'] = 'Resultado da pesquisa na Amazon'
     email.attach(MIMEText(message, 'html'))
     with smtplib.SMTP('smtp.gmail.com', 587) as server:
         server.ehlo()
         server.starttls()
         server.ehlo()
-        server.login(sender, config['senha'])
+        server.login(config['email'], config['senha'])
         server.sendmail(email['From'], email['To'], email.as_string())
         server.quit()

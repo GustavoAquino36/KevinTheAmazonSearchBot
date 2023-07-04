@@ -162,6 +162,3 @@ cython_debug/
 # test
 test.py
 test.html
-
-# settings
-settings.xlsx
