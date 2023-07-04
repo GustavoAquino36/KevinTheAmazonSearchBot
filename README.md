@@ -1,4 +1,4 @@
-<h1>Projeto de Web Scraping com Python e Selenium</h1>
+<h1>Kevin, the amazon search bot</h1>
 
 <h2>Pré-requisitos</h2>
 <p>Certifique-se de ter os seguintes componentes instalados em seu ambiente de desenvolvimento:</p>
