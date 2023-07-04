@@ -7,7 +7,6 @@ config = LerConfig()
 
 def stringfyMessage(item, lista, shorturl, title, fullPrice, seller):
     mediaValores = sum(lista) / len(lista)
-    print(mediaValores)
     mediaValores = '{:.2f}'.format(mediaValores)
     return (
         f'''

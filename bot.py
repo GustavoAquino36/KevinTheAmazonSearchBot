@@ -11,9 +11,10 @@ import sys
 
 dictConfig = LerConfig()
 item = input("Qual item deseja pesquisar via Amazon?\n")
+email = input("Qual email deseja enviar os resultados?\n")
 driver = OpenBrowser("https://www.amazon.com.br")
 lista = pesquisarItem(driver, item)
 tratarDados(driver, lista)
 shorturl, title, fullPrice, seller = coletaItem(driver)
 message = stringfyMessage(item, lista, shorturl, title, fullPrice, seller)
-sendEmail(message, 'amazonresearchbot@gmail.com')
+sendEmail(message, email)
