@@ -29,7 +29,6 @@
     <li>Abra o arquivo <code>settings.xlsx</code>.</li>
     <li>Preencha as seguintes informações(na coluna Value):</li>
 </ol>
-<li>
     <li><code>email</code>: o email a ser usado para enviar o resultado.</li>
     <li><code>senha</code>: a senha de app criada para o email acima.</li>
 </ul>
